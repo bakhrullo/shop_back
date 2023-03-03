@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-em+)ryg3ld!a52cf3(qn%t-$=uu*g01x9wdsjm+dnkiwemj3^z
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+CSRF_TRUSTED_ORIGINS = ["https://*.ngrok.io"]
 # Application definition
 
 
@@ -78,11 +78,13 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {'charset': 'utf8mb4'},
         'NAME': 'shopdb',
         'USER': 'root',
         'PASSWORD': 'mysql2022',
         'HOST': 'localhost',
         'PORT': '3306',
+
     }
 }
 
@@ -103,6 +105,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+    ]
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
